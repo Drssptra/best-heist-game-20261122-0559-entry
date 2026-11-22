@@ -7,7 +7,7 @@
 //
 //   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDossier } from './vendor/makefun-game.ts';
@@ -21,7 +21,6 @@ function copyTree(sourceDir: string, targetDir: string): void {
 }
 
 function handIn(): void {
-  rmSync(outputDir, { recursive: true, force: true });
   mkdirSync(outputDir, { recursive: true });
   copyTree(join(repoRoot, 'game'), join(outputDir, 'game'));
   if (existsSync(join(repoRoot, 'screenshots'))) {
